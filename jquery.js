@@ -12,11 +12,21 @@ $(document).ready(function () {
         $.ajax({
             url: "https://api.scryfall.com/cards/named?fuzzy="+encodeURIComponent(card),
             success: function(data){
-                console.log(data); 
-                $("#cardslist").append("<div id='carta_"+count+"'>"+data.name+"</div><img id='cardImg' src='"+ data.image_uris.small +"'>");
-                count++;
-                $("input#card").val("");
-                $("input#card").focus();
+				if(data.image_uris != null){
+					console.log(data); 
+					$("#cardslist").append("<div id='carta_"+count+"'>"+data.name+"</div><img id='cardImg' src='"+ data.image_uris.small +"'>");
+					count++;
+					$("input#card").val("");
+					$("input#card").focus();
+				} else {
+					console.log(data); 
+					$("#cardslist").append("<div id='carta_"+count+"'>"+data.name+"</div><img id='cardImg' src='"+ data.card_faces[0].image_uris.small +"'><img id='cardImgBack' src='"+ data.card_faces[1].image_uris.small +"'>");
+					count++;
+					$("input#card").val("");
+					$("input#card").focus();
+				
+				
+				}
             },
 			error: function(data){
 				console.log(data);
