@@ -43,6 +43,11 @@
     display: none;
     position: absolute;
 }
+
+#cardImgBack {
+    display: none;
+    position: absolute;
+}
     
 #cardslist{
     position: relative;
@@ -52,4 +57,9 @@ div:hover + #cardImg {
     display: block;
     top: 0;
     left: 120%;
+}
+div:hover + #cardImg + #cardImgBack {
+    display: block;
+    top: 0;
+    left: calc(120% + 146px);
 }
